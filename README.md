@@ -2,11 +2,12 @@
 
 # is very fun
 
+set up
 ```
 bower install
 ```
 
+interactive
 ```
-pulp psci foo.purs
+./purwatch foo.purs
 ```
-

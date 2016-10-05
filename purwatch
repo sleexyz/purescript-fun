@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# Poor man's pscid
+
+set -x
+
+CODES="MissingTypeDeclaration,ImplicitImport"
+
+ls $1 | entr psa --censor-codes="$CODES" "bower_components/purescript-*/**/*.purs" $@
