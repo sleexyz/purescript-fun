@@ -13,7 +13,10 @@ import Control.Monad.Eff
 import Control.Monad.Eff.Random
 import Control.Monad.Eff.Console hiding (error)
 import Control.Monad.Eff.Exception
+import Control.Monad.Eff.Ref
 import Control.Monad.ST
+
+import DOM
 
 -- 3.3 records
 author :: {name :: String, interests :: Array String}
@@ -108,20 +111,7 @@ safeDivide a b = case safeDivide' a b  of
   Just y -> return y
 
 
-
-
--- via montecarlo integration
-
-data Coord = Coord { x :: Number, y :: Number}
-derive instance genericCoord :: Generic Coord
-instance showCoord :: Show Coord where show = gShow
-
--- estimatePi :: forall h eff . Eff (st :: ST h, random :: RANDOM | eff) Number
--- estimatePi = do
---   ref <- newSTRef 0.0
---   readSTRef ref
-
-estimatePi :: forall eff . Eff (random :: RANDOM | eff) Number
+estimatePi :: forall eff. Eff (random :: RANDOM | eff) Number
 estimatePi = runST (do
                        ref <- newSTRef 0.0
                        forE 0.0 iterations $ \i -> do
@@ -140,3 +130,18 @@ estimatePi = runST (do
 
     norm :: Number -> Number -> Number
     norm x y = sqrt $ (+) (x `pow` 2.0) (y `pow` 2.0)
+
+-- 9.8 Global Mutable State
+
+
+foobar :: forall eff.  Eff (ref :: REF, console :: CONSOLE | eff) Unit
+foobar = do
+  ref <- newRef "hello"
+  readRef ref >>= print
+  return unit
+
+
+
+
+
+
