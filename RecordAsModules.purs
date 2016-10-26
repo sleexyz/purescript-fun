@@ -1,4 +1,4 @@
-module Records where
+module RecordsAsModules where
 import Prelude
 
 type Semigroup a rest = Record (add :: a -> a -> a | rest)

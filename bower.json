@@ -8,6 +8,6 @@
   ],
   "dependencies": {},
   "devDependencies": {
-    "purescript-psci-support": "^1.0.0"
+    "purescript-profunctor-lenses": "^1.0.0"
   }
 }

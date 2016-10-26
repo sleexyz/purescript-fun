@@ -6,4 +6,4 @@ set -x
 
 CODES="MissingTypeDeclaration,ImplicitImport"
 
-ls $1 | entr psa --censor-codes="$CODES" "bower_components/purescript-*/**/*.purs" $@
+ls $1 | entr psa --censor-codes="$CODES" "bower_components/purescript-*/src/**/*.purs" $@
